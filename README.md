@@ -1,3 +1,32 @@
+zéroCMS : Le cms des zéros.
+========================
+1)Installation du projet via git
+--------------------------------
+Se placer dans le dossier ou vous voulez installer le projet (Repertoire Serveur Web) puis executez dans la console:
+
+    git clone http://github.com/zeroCMS/zeroCMS
+
+2)Configuration du projet
+-------------------------
+Renommer le fichier :
+
+    app/config/parameters.ini.dist en app/config/parameters.ini
+
+Rentrez vos identifiants de base de donnée dans le fichier parameters.ini
+
+Allez via votre navigateur web a l'adresse : 
+    
+    http://localhost/zeroCMS/web/config.php 
+
+en supposant que le repertoire est a la racine de votre serveur web (www) puis suivez les instructions et réglez les problémes si il y en a.
+
+
+Aller a l'adresse :
+    
+    http://localhost/zeroCMS/app_dev.php 
+
+Vous devriez voir le message d'acceuil "Bienvenue sur le CMS des zéros !!!".
+
 Symfony Standard Edition
 ========================
 

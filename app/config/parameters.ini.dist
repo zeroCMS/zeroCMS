@@ -5,15 +5,15 @@
     database_driver   = pdo_mysql
     database_host     = localhost
     database_port     =
-    database_name     = symfony
-    database_user     = root
-    database_password =
+    database_name     = zeroCMS
+    database_user     = zeroCMS
+    database_password = zeroCMS
 
     mailer_transport  = smtp
     mailer_host       = localhost
     mailer_user       =
     mailer_password   =
 
-    locale            = en
+    locale            = fr
 
     secret            = ThisTokenIsNotSoSecretChangeIt
