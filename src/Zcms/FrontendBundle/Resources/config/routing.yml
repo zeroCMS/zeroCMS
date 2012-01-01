@@ -1,0 +1,3 @@
+ZcmsFrontendBundle_homepage:
+    pattern:  /
+    defaults: { _controller: ZcmsFrontendBundle:Index:index }
