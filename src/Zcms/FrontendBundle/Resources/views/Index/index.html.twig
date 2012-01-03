@@ -2,6 +2,8 @@
 {% block title %}{{parent()}}Accueil{% endblock %}
 
 {% block body %}
+
+{{ parent() }}
 <div class="hero-unit">
     <h1>Bienvenue sur le CMS des zéros !!!</h1>
     <p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
@@ -33,37 +35,40 @@
                 <h3>Bootstrap JS</h3>
             </div>
             <div class="modal-body">
-                <p>Puissant ce framework css !</p>
+            <form action="" class="form-stacked">
+            <fieldset>
+                <legend>Contactez nous !</legend>
+
+                <div class="clearfix">
+                    <label for="xlInput1">Prénom</label>
+                    <div class="input">
+                        <input class=".span6" id="xlInput1" name="xlInput1" type="text" required="true">
+                    </div>
+                    <label for="prependedInput">Email</label>
+                    <div class="input">
+                       
+                    <input class=".span6" id="prependedInput" name="prependedInput" type="text" required="true">
+                     
+                    </div>
+                    <label for="textarea">Message</label>
+                    <div class="input">
+                        <textarea class=".span6" id="textarea" name="textarea" rows="3" required="true"></textarea>
+                    </div>
+                </div><!-- /clearfix -->
+
+            </fieldset>
+
+            <div class="actions">
+                <button type="submit" class="btn primary">Envoyer</button>&nbsp;<button type="reset" class="btn">Annuler</button>
             </div>
-            <div class="modal-footer">
-                <a href="#" class="btn primary">Valider</a>
-                <a href="#" class="btn secondary">Annuler</a>
+        </form>
+                
             </div>
+            
         </div>
 
         <button data-controls-modal="modal-from-dom" data-backdrop="true" data-keyboard="true" class="btn danger">Ouvrir popup</button><br/><br/>
-            <ul class="media-grid">
-    <li>
-    <a href="#">
-    <img class="thumbnail" src="http://placehold.it/210x150" alt="">
-    </a>
-    </li>
-    <li>
-    <a href="#">
-    <img class="thumbnail" src="http://placehold.it/210x150" alt="">
-    </a>
-    </li>
-    <li>
-    <a href="#">
-    <img class="thumbnail" src="http://placehold.it/210x150" alt="">
-    </a>
-    </li>
-    <li>
-    <a href="#">
-    <img class="thumbnail" src="http://placehold.it/210x150" alt="">
-    </a>
-    </li>
-    </ul>
+            
     </div>
     <div class="tab-pane" id="formulaires">
         <form action="" class="form-stacked">
@@ -168,12 +173,4 @@
     </div>
 </div>
 {% endblock %}
-{% block javascripts %}
-{{ parent() }}
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-modal.js') }}"></script>
-<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-tabs.js') }}"></script>
-<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-dropdown.js') }}"></script>
-<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-alerts.js') }}"></script>
 
-{% endblock %}

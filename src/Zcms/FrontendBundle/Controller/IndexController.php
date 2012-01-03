@@ -10,6 +10,6 @@ class IndexController extends Controller
     
     public function indexAction()
     {
-        return $this->render('ZcmsFrontendBundle:Index:index.html.twig');
+    	return $this->render('ZcmsFrontendBundle:Index:index.html.twig');
     }
 }

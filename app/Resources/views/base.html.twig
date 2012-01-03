@@ -8,11 +8,16 @@
 
         {% block stylesheets %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+        <link rel="stylesheet/less" href="{{ asset('bundles/zcmsfrontend/framework/lib/bootstrap.less') }}" media="all" />
         {% endblock %}
-        {% block javascripts %}
-        
-        {% endblock %}
+{% block javascripts %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="{{ asset('bundles/zcmsfrontend/framework/js/less.js') }}"></script>
+<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-modal.js') }}"></script>
+<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-tabs.js') }}"></script>
+<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-dropdown.js') }}"></script>
+<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-alerts.js') }}"></script>
+{% endblock %}
 
         </head>
         <body>
@@ -40,10 +45,11 @@
 
       <div class="content">
         <div class="page-header">
-          <h1>Home <small> propulsed by symfony2</small></h1>
+          <h1><small> propulsed by symfony2</small></h1>
         </div>
         <div class="row">
           {% block body %}
+	          {% include "ZcmsFrontendBundle::flash.html.twig" %}
            
           {% endblock %}
           
