@@ -20,6 +20,17 @@ Allez via votre navigateur web a l'adresse :
 
 en supposant que le repertoire est a la racine de votre serveur web (www) puis suivez les instructions et réglez les problémes si il y en a.
 
+Mettre en place les vendors : 
+    
+Ajouter les vendors au projet soit via :
+
+    php bin/vendors install (git requis)
+
+soit en téléchargant via le site de symfony2 (methode recommandée) : 
+
+    http://symfony.com/download prendre la version Standard avec les vendors
+
+puis dezipper le dossier vendor a la racine de votre projet
 
 Aller a l'adresse :
     
