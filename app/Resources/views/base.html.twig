@@ -11,57 +11,38 @@
         <link rel="stylesheet/less" href="{{ asset('bundles/zcmsfrontend/framework/lib/bootstrap.less') }}" media="all" />
         {% endblock %}
 {% block javascripts %}
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="{{ asset('bundles/zcmsfrontend/framework/js/less.js') }}"></script>
-<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-modal.js') }}"></script>
-<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-tabs.js') }}"></script>
-<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-dropdown.js') }}"></script>
-<script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-alerts.js') }}"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="{{ asset('bundles/zcmsfrontend/framework/js/less.js') }}"></script>
+        <script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-modal.js') }}"></script>
+        <script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-tabs.js') }}"></script>
+        <script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-dropdown.js') }}"></script>
+        <script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-alerts.js') }}"></script>
 {% endblock %}
 
-        </head>
-        <body>
-<div class="topbar">
-      <div class="fill">
+    </head>
+    <body>
+        {% include "ZcmsFrontendBundle::topbar.html.twig" %}
+
         <div class="container">
-          <a class="brand" href="#">zéroCMS</a>
 
-          <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <form action="" class="pull-right">
-            <input class="input-small" type="text" placeholder="Login">
+            <div class="content">
+                <div class="page-header">
+                    <h1><small> propulsed by symfony2</small></h1>
+                </div>
 
-            <input class="input-small" type="password" placeholder="Password">
-            <button class="btn" type="submit">Sign in</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-
-      <div class="content">
-        <div class="page-header">
-          <h1><small> propulsed by symfony2</small></h1>
-        </div>
-        <div class="row">
           {% block body %}
 	          {% include "ZcmsFrontendBundle::flash.html.twig" %}
-           
-          {% endblock %}
-          
-        </div>
-      </div>
+	          {% render "ZcmsFrontendBundle:Index:Bread" %}
+	  {% endblock %}
 
-      <footer>
-        <p>&copy; Company 2011</p>
+            </div>
 
-      </footer>
+            <footer>
+                <p>&copy; zéroCMS 2012</p>
 
-    </div> <!-- /container -->
-        </body>
+            </footer>
 
-    </html>
+        </div> <!-- /container -->
+    </body>
+
+</html>

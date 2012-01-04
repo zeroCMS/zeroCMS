@@ -1,21 +1,21 @@
-   {% if app.session.hasFlash('notice') %}
-		   <div class="alert-message warning fade in" data-alert="alert">
-               <a class="close" href="#">×</a>
-               <p><strong>Attention : </strong>  {{ app.session.flash('notice') }}.</p>
-               </div>
-			    {% elseif app.session.hasFlash('error') %}
-	           <div class="alert-message error fade in" data-alert="alert">
-                  <a class="close" href="#">×</a>
-                  <p><strong>Erreur : </strong> {{ app.session.flash('error') }}.</p>
-              </div>
-              {% elseif app.session.hasFlash('error') %}
-	           <div class="alert-message success fade in" data-alert="alert">
-                  <a class="close" href="#">×</a>
-                  <p><strong>Succés : </strong> {{ app.session.flash('success') }}.</p>
-              </div>
-              {% elseif app.session.hasFlash('info') %}
-	           <div class="alert-message info fade in" data-alert="alert">
-                  <a class="close" href="#">×</a>
-                  <p><strong>Info : </strong> {{ app.session.flash('info') }}.</p>
-              </div>
-			    {% endif %}
+{% if app.session.hasFlash('notice') %}
+    <div class="alert-message warning fade in" data-alert="alert">
+        <a class="close" href="#">×</a>
+        <p><strong>Attention : </strong>  {{ app.session.flash('notice') }}.</p>
+    </div>
+{% elseif app.session.hasFlash('error') %}
+    <div class="alert-message error fade in" data-alert="alert">
+        <a class="close" href="#">×</a>
+        <p><strong>Erreur : </strong> {{ app.session.flash('error') }}.</p>
+    </div>
+{% elseif app.session.hasFlash('error') %}
+    <div class="alert-message success fade in" data-alert="alert">
+        <a class="close" href="#">×</a>
+        <p><strong>Succés : </strong> {{ app.session.flash('success') }}.</p>
+    </div>
+{% elseif app.session.hasFlash('info') %}
+    <div class="alert-message info fade in" data-alert="alert">
+        <a class="close" href="#">×</a>
+        <p><strong>Info : </strong> {{ app.session.flash('info') }}.</p>
+    </div>
+{% endif %}
