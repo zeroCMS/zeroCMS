@@ -1,0 +1,35 @@
+{% extends "ZcmsUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+{% if error %}
+<div>{{ error }}</div>
+{% endif %}
+
+<form class="form-stacked" action="{{ path("fos_user_security_check") }}" method="post">
+    <fieldset>
+        <legend>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</legend>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+        <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+        <input class="xlarge" type="text" id="username" name="_username" value="{{ last_username }}" />
+
+        <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+        <input class="xlarge" type="password" id="password" name="_password" />
+
+        <div class="input">
+            <ul class="inputs-list">
+                <li>
+                    <label>
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                        <span>{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="actions">
+            <button name="_submit" class="btn primary" type="submit">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button> <button class="btn" type="reset">Annuler</button>
+        </div>
+    </fieldset>
+</form>
+{% endblock fos_user_content %}

@@ -4,6 +4,11 @@
 /app/logs/*
 /vendor/
 /app/config/parameters.ini
+<<<<<<< HEAD
 /.settings
 /.project
+=======
+.project
+.settings
+>>>>>>> baseDesign
 /nbproject/private/
