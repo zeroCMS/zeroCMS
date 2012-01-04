@@ -15,7 +15,15 @@ class IndexController extends Controller
     }
     public function breadAction()
     {
-        $request = $this->getRequest();
+        $request = $this->getRequest()->getRequestUri();
+        
+        echo '<pre>';
+        Debug::dump($this->getRequest()->getPathInfo());
+        echo '</pre>';
+        if($request == "/"){
+            
+            $request = "Home";
+        }
         return $this->render('ZcmsFrontendBundle::breadcrumb.html.twig',array('request'=>$request));
     }
 }

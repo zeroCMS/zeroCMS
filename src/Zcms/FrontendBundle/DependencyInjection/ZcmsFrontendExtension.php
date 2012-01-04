@@ -23,7 +23,7 @@ class ZcmsFrontendExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         
-        $definition = new Definition('Zcms\FrontendBundle\Extension\ZcmsExtension');
+        $definition = new Definition('Zcms\FrontendBundle\Extension\UcfirstExtension');
         $definition->addTag('twig.extension');
         
         $container->setDefinition('my_twig_extension', $definition);
