@@ -16,8 +16,6 @@ class IndexController extends Controller
     public function breadAction()
     {
         $request = $this->getRequest();
-        Debug::dump($request->getUri());
-        
-    	return $this->render('ZcmsFrontendBundle::breadcrumb.html.twig',array('request'=>$request));
+        return $this->render('ZcmsFrontendBundle::breadcrumb.html.twig',array('request'=>$request));
     }
 }
