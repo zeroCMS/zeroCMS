@@ -16,10 +16,6 @@ class IndexController extends Controller
     public function breadAction()
     {
         $request = $this->getRequest()->getRequestUri();
-        
-        echo '<pre>';
-        Debug::dump($this->getRequest()->getPathInfo());
-        echo '</pre>';
         if($request == "/"){
             
             $request = "Home";
