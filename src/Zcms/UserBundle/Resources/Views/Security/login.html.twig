@@ -2,7 +2,11 @@
 
 {% block fos_user_content %}
 {% if error %}
-<div>{{ error }}</div>
+<div data-alert="alert" class="alert-message block-message error" data>
+    <a href="#" class="close">×</a>
+    <p><strong>{{ error }}</strong> Change this and that and <a href="#">try again</a>.</p>
+
+</div>
 {% endif %}
 
 <form class="form-stacked" action="{{ path("fos_user_security_check") }}" method="post">
