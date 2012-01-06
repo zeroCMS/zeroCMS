@@ -23,10 +23,10 @@ class ZcmsFrontendExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         
-        $definition = new Definition('Zcms\FrontendBundle\Extension\UcfirstExtension');
+        $definition = new Definition('Zcms\FrontendBundle\Extension\ZcmsExtension');
         $definition->addTag('twig.extension');
         
-        $container->setDefinition('my_twig_extension', $definition);
+        $container->setDefinition('zcmsExtension', $definition);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

@@ -6,7 +6,7 @@ namespace Zcms\FrontendBundle\Extension;
 
 use Zcms\FrontendBundle\Extension\Debug;
 
-class UcfirstExtension extends \Twig_Extension {
+class ZcmsExtension extends \Twig_Extension {
 
     public function getFilters() {
         return array(
