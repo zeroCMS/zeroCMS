@@ -4,13 +4,13 @@
 
 namespace Zcms\FrontendBundle\Extension;
 
-use Doctrine\Common\Util\Debug;
+use Zcms\FrontendBundle\Extension\Debug;
 
 class UcfirstExtension extends \Twig_Extension {
 
     public function getFilters() {
         return array(
-            'debug' => new \Twig_Filter_Method($this,'debug'),
+            'debug' => new \Twig_Filter_Method($this, 'debug'),
             'ucfirst' => new \Twig_Filter_Method($this, 'ucfirst'),
             'strip' => new \Twig_Filter_Method($this, 'strip'),
         );
@@ -28,9 +28,7 @@ class UcfirstExtension extends \Twig_Extension {
 
     public function debug($var) {
 
-        echo '<pre>';
-        Debug::dump($var);
-        echo '</pre>';
+        return Debug::dump($var);
     }
 
     public function getName() {

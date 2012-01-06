@@ -1,7 +1,7 @@
 ZcmsFrontendBundle_homepage:
     pattern:  /
-    defaults: { _controller: ZcmsFrontendBundle:Index:index }
+    defaults: { _controller : ZcmsFrontendBundle:Index:index }
 
 ZcmsFrontendBundle_demo:
     pattern:  /demo
-    defaults: { _controller: ZcmsFrontendBundle:Demo:index }
+    defaults: { _controller : ZcmsFrontendBundle:Demo:index }

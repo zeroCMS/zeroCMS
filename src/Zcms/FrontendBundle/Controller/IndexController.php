@@ -20,6 +20,7 @@ class IndexController extends Controller
             
             $request = "Home";
         }
+        //$this->get('session')->setFlash('success', 'Your changes were saved!');
         return $this->render('ZcmsFrontendBundle::breadcrumb.html.twig',array('request'=>$request));
     }
 }

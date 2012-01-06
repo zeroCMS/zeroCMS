@@ -8,7 +8,7 @@
         <a class="close" href="#">×</a>
         <p><strong>Erreur : </strong> {{ app.session.flash('error') }}.</p>
     </div>
-{% elseif app.session.hasFlash('error') %}
+{% elseif app.session.hasFlash('success') %}
     <div class="alert-message success fade in" data-alert="alert">
         <a class="close" href="#">×</a>
         <p><strong>Succés : </strong> {{ app.session.flash('success') }}.</p>
