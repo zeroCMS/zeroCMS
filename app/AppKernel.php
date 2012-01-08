@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Zcms\FrontendBundle\ZcmsFrontendBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Zcms\UserBundle\ZcmsUserBundle(),
+            new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
