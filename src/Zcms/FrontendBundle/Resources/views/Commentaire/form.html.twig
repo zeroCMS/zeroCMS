@@ -1,0 +1,6 @@
+<form action="{{ path('ZcmsFrontendBundle_commentaire_creation', { 'article_id' : commentaire.article.id } ) }}" method="post" {{ form_enctype(form) }} class="zcms">
+    {{ form_widget(form) }}
+    <p>
+        <input type="submit" value="Submit" class="btn primary">
+    </p>
+</form>

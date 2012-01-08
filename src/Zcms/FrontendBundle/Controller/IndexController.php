@@ -13,10 +13,10 @@ class IndexController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entities = $em->getRepository('ZcmsFrontendBundle:Article')->findAll();
+        $lastArticles = $em->getRepository('ZcmsFrontendBundle:Article')->getDerniersArticles(5);
 
         return $this->render('ZcmsFrontendBundle:Index:index.html.twig', array(
-            'entities' => $entities
+            'articles' => $lastArticles
         ));
     	
     }

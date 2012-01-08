@@ -3,28 +3,91 @@
 
 {% block body %}
 
-<h1>Article edit</h1>
+<form class="form-stacked" action="{{ path('article_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <!-- Les erreurs générales du formulaire. -->
+{{ form_errors(edit_form) }}
 
-<form action="{{ path('article_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    {{ form_widget(edit_form) }}
-        <p>
-            <button type="submit">Edit</button>
-        </p>
-    </form>
+    <fieldset>
+        <legend>Edition de l'article "{{entity.titre}}"</legend>
+        
+        <div class="clearfix">
+            {{ form_label(edit_form.titre, "Titre de l'article") }}
+            {{ form_errors(edit_form.titre) }}
+            <div class="input">
+            {{ form_widget(edit_form.titre,{ 'attr': {'class': 'xlarge'} }) }}
+            </div>
+        </div>
+        <div class="clearfix">
+            {{ form_label(edit_form.contenu, "Contenu de l'article") }}
+            {{ form_errors(edit_form.contenu) }}
+            <div class="input">
+            {{ form_widget(edit_form.contenu,{ 'attr': {'class': 'xlarge'} }) }}
+            </div>
+        </div>
+        <div class="clearfix">
+            {{ form_label(edit_form.auteur, "Auteur de l'article") }}
+            {{ form_errors(edit_form.auteur) }}
+            <div class="input">
+            {{ form_widget(edit_form.auteur,{ 'attr': {'class': 'xlarge'} }) }}
+            </div>
+        </div>
+        <div class="clearfix">
+            {{ form_label(edit_form.dateCreation, "Date de création") }}
+                {{ form_errors(edit_form.dateCreation) }}
+            <div class="input">
+              <div class="inline-inputs">
+                {{ form_widget(edit_form.dateCreation,{ 'attr': {'class': 'xlarge'} }) }}
+                
+              </div>
+            </div>
+          </div>
+         <div class="clearfix">
+            {{ form_label(edit_form.dateModification, "Date de modification") }}
+                {{ form_errors(edit_form.dateModification) }}
+            <div class="input">
+              <div class="inline-inputs">
+                {{ form_widget(edit_form.dateModification,{ 'attr': {'class': 'xlarge'} }) }}
+                
+              </div>
+            </div>
+          </div>
+        {{ form_rest(edit_form) }}
+            </fieldset>
+            <div class="actions">
+                <button class="btn success" type="submit">Valider</button>
+                <button id="sup" class="btn danger" type="button">Supprimer</button>
+                <button class="btn info" type="reset">Annuler</button>
+                </div>
+        </form>
 
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('article') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>
-            <form action="{{ path('article_delete', { 'id': entity.id }) }}" method="post">
+       
+       
+       
+
+<a class="btn primary" href="{{ path('article') }}">Retour liste</a>
+
+
+<form action="{{ path('article_delete', { 'id': entity.id }) }}" method="post" id="formS">
             {{ form_widget(delete_form) }}
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-        </ul>
+</form>
+            
 
 {% endblock %}
+{% block javascripts %}
+{{parent()}}
+<script type="text/javascript" src="{{ asset('bundles/zcmsfrontend/js/ckeditor/ckeditor.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('bundles/zcmsfrontend/js/ckeditor/adapters/jquery.js') }}"></script>
+
+
+
+
+{% endblock %}
+{% block ready %}
+$('#article_contenu' ).ckeditor();
+$('#sup').click(function() {
+  $("#formS").submit();
+});
+
+{% endblock %} 
 

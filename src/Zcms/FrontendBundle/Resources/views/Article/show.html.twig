@@ -3,6 +3,8 @@
 
 {% block body %}
 
+
+
 <h1>Article</h1>
 
 <table class="record_properties">
@@ -17,7 +19,7 @@
         </tr>
         <tr>
             <th>Contenu</th>
-            <td>{{ entity.contenu }}</td>
+            <td>{{ entity.contenu|raw }}</td>
         </tr>
         <tr>
             <th>Auteur</th>
@@ -25,14 +27,21 @@
         </tr>
         <tr>
             <th>Datecreation</th>
-            <td>{{ entity.dateCreation|date('Y-m-d H:i:s') }}</td>
+            <td>{{ entity.dateCreation|date('m-d-Y H:i:s') }}</td>
         </tr>
         <tr>
             <th>Datemodification</th>
-            <td>{{ entity.dateModification|date('Y-m-d H:i:s') }}</td>
+            <td>{{ entity.dateModification|date('m-d-Y H:i:s') }}</td>
         </tr>
     </tbody>
 </table>
+<section class="comments" id="comments">
+    <section class="previous-comments">
+        <h3>Commentaires</h3>
+            {% include 'ZcmsFrontendBundle:Commentaire:index.html.twig' with { 'commentaires': commentaires } %}
+        {% render 'ZcmsFrontendBundle:Commentaire:new' with { 'article_id': entity.id } %}
+    </section>
+</section>
 
 <ul class="record_actions">
     <li>
@@ -48,10 +57,10 @@
     <li>
         <form action="{{ path('article_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    </ul>
 
 {% endblock %}
 

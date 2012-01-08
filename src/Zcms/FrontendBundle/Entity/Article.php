@@ -9,9 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Zcms\FrontendBundle\Entity\ArticleRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-class Article
-{
+class Article {
+
     /**
      * @var integer $id
      *
@@ -56,14 +57,47 @@ class Article
      */
     private $dateModification;
 
+    /**
+     * @var boolean $isEnabled
+     *
+     * * @ORM\Column(name="active", type="boolean")
+     */
+    private $active;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
+     */
+    protected $commentaires;
+
+    public function __construct() {
+
+        $this->setDateCreation(new \DateTime());
+        $this->setDateModification(new \DateTime());
+
+        $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function addComment(Commentaire $commentaire) {
+        $this->commentaires[] = $commentaire;
+    }
+
+    public function getCommentaires() {
+        return $this->commentaires;
+    }
+
+    /**
+     * @ORM\preUpdate
+     */
+    public function setUpdatedValue() {
+        $this->setDateModification(new \DateTime());
+    }
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -72,8 +106,7 @@ class Article
      *
      * @param string $titre
      */
-    public function setTitre($titre)
-    {
+    public function setTitre($titre) {
         $this->titre = $titre;
     }
 
@@ -82,8 +115,7 @@ class Article
      *
      * @return string 
      */
-    public function getTitre()
-    {
+    public function getTitre() {
         return $this->titre;
     }
 
@@ -92,8 +124,7 @@ class Article
      *
      * @param text $contenu
      */
-    public function setContenu($contenu)
-    {
+    public function setContenu($contenu) {
         $this->contenu = $contenu;
     }
 
@@ -102,9 +133,11 @@ class Article
      *
      * @return text 
      */
-    public function getContenu()
-    {
-        return $this->contenu;
+    public function getContenu($longueur = null) {
+        if (false === is_null($longueur) && $longueur > 0)
+            return substr($this->contenu, 0, $longueur) . " ...";
+        else
+            return $this->contenu;
     }
 
     /**
@@ -112,8 +145,7 @@ class Article
      *
      * @param string $auteur
      */
-    public function setAuteur($auteur)
-    {
+    public function setAuteur($auteur) {
         $this->auteur = $auteur;
     }
 
@@ -122,8 +154,7 @@ class Article
      *
      * @return string 
      */
-    public function getAuteur()
-    {
+    public function getAuteur() {
         return $this->auteur;
     }
 
@@ -132,8 +163,7 @@ class Article
      *
      * @param datetime $dateCreation
      */
-    public function setDateCreation($dateCreation)
-    {
+    public function setDateCreation(\Datetime $dateCreation) {
         $this->dateCreation = $dateCreation;
     }
 
@@ -142,8 +172,7 @@ class Article
      *
      * @return datetime 
      */
-    public function getDateCreation()
-    {
+    public function getDateCreation() {
         return $this->dateCreation;
     }
 
@@ -152,8 +181,7 @@ class Article
      *
      * @param datetime $dateModification
      */
-    public function setDateModification($dateModification)
-    {
+    public function setDateModification(\Datetime $dateModification) {
         $this->dateModification = $dateModification;
     }
 
@@ -162,8 +190,39 @@ class Article
      *
      * @return datetime 
      */
-    public function getDateModification()
-    {
+    public function getDateModification() {
         return $this->dateModification;
     }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     */
+    public function setActive($active) {
+        $this->active = $active;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive() {
+        return $this->active;
+    }
+
+    /**
+     * Add commentaires
+     *
+     * @param Zcms\FrontendBundle\Entity\Commentaire $commentaires
+     */
+    public function addCommentaire(\Zcms\FrontendBundle\Entity\Commentaire $commentaires) {
+        $this->commentaires[] = $commentaires;
+    }
+
+    public function __toString() {
+        return $this->getTitre();
+    }
+
 }

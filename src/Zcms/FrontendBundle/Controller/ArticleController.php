@@ -3,7 +3,6 @@
 namespace Zcms\FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Zcms\FrontendBundle\Entity\Article;
 use Zcms\FrontendBundle\Form\ArticleType;
 
@@ -11,70 +10,66 @@ use Zcms\FrontendBundle\Form\ArticleType;
  * Article controller.
  *
  */
-class ArticleController extends Controller
-{
+class ArticleController extends Controller {
+
     /**
      * Lists all Article entities.
      *
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getEntityManager();
 
         $entities = $em->getRepository('ZcmsFrontendBundle:Article')->findAll();
 
         return $this->render('ZcmsFrontendBundle:Article:index.html.twig', array(
-            'entities' => $entities
-        ));
+                    'entities' => $entities
+                ));
     }
 
     /**
      * Finds and displays a Article entity.
      *
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('ZcmsFrontendBundle:Article')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Article entity.');
         }
 
+        $commentaires = $em->getRepository('ZcmsFrontendBundle:Commentaire')->getCommentairesArticle($id);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ZcmsFrontendBundle:Article:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
-        ));
+                    'entity' => $entity,
+                    'commentaires' => $commentaires,
+                    'delete_form' => $deleteForm->createView(),
+                ));
     }
 
     /**
      * Displays a form to create a new Article entity.
      *
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new Article();
-        $form   = $this->createForm(new ArticleType(), $entity);
+        $form = $this->createForm(new ArticleType(), $entity);
 
         return $this->render('ZcmsFrontendBundle:Article:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView()
-        ));
+                    'entity' => $entity,
+                    'form' => $form->createView()
+                ));
     }
 
     /**
      * Creates a new Article entity.
      *
      */
-    public function createAction()
-    {
-        $entity  = new Article();
+    public function createAction() {
+        $entity = new Article();
         $request = $this->getRequest();
-        $form    = $this->createForm(new ArticleType(), $entity);
+        $form = $this->createForm(new ArticleType(), $entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -83,21 +78,19 @@ class ArticleController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('article_show', array('id' => $entity->getId())));
-            
         }
 
         return $this->render('ZcmsFrontendBundle:Article:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView()
-        ));
+                    'entity' => $entity,
+                    'form' => $form->createView()
+                ));
     }
 
     /**
      * Displays a form to edit an existing Article entity.
      *
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('ZcmsFrontendBundle:Article')->find($id);
@@ -110,18 +103,17 @@ class ArticleController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ZcmsFrontendBundle:Article:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
+                ));
     }
 
     /**
      * Edits an existing Article entity.
      *
      */
-    public function updateAction($id)
-    {
+    public function updateAction($id) {
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('ZcmsFrontendBundle:Article')->find($id);
@@ -130,7 +122,7 @@ class ArticleController extends Controller
             throw $this->createNotFoundException('Unable to find Article entity.');
         }
 
-        $editForm   = $this->createForm(new ArticleType(), $entity);
+        $editForm = $this->createForm(new ArticleType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -145,18 +137,17 @@ class ArticleController extends Controller
         }
 
         return $this->render('ZcmsFrontendBundle:Article:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
+                ));
     }
 
     /**
      * Deletes a Article entity.
      *
      */
-    public function deleteAction($id)
-    {
+    public function deleteAction($id) {
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
@@ -177,11 +168,11 @@ class ArticleController extends Controller
         return $this->redirect($this->generateUrl('article'));
     }
 
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
+                        ->add('id', 'hidden')
+                        ->getForm()
         ;
     }
+
 }

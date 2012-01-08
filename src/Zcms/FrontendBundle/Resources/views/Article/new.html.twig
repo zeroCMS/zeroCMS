@@ -3,22 +3,77 @@
 
 {% block body %}
 
-<h1>Article creation</h1>
+<form class="form-stacked" action="{{ path('article_create') }}" method="post" {{ form_enctype(form) }}>
+      <!-- Les erreurs générales du formulaire. -->
+{{ form_errors(form) }}
 
-<form action="{{ path('article_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <p>
-        <button type="submit">Create</button>
-    </p>
+    <fieldset>
+        <legend>Nouvel article</legend>
+        
+        <div class="clearfix">
+            {{ form_label(form.titre, "Titre de l'article") }}
+            {{ form_errors(form.titre) }}
+            <div class="input">
+            {{ form_widget(form.titre,{ 'attr': {'class': 'xlarge'} }) }}
+            </div>
+        </div>
+        <div class="clearfix">
+            {{ form_label(form.contenu, "Contenu de l'article") }}
+            {{ form_errors(form.contenu) }}
+            <div class="input">
+            {{ form_widget(form.contenu) }}
+            </div>
+        </div>
+        <div class="clearfix">
+            {{ form_label(form.auteur, "Auteur de l'article") }}
+            {{ form_errors(form.auteur) }}
+            <div class="input">
+            {{ form_widget(form.auteur,{ 'attr': {'class': 'xlarge'} }) }}
+            </div>
+        </div>
+        <div class="clearfix">
+            {{ form_label(form.dateCreation, "Date de création") }}
+                {{ form_errors(form.dateCreation) }}
+            <div class="input">
+              <div class="inline-inputs">
+                {{ form_widget(form.dateCreation,{ 'attr': {'class': 'xlarge'} }) }}
+                
+              </div>
+            </div>
+          </div>
+         <div class="clearfix">
+            {{ form_label(form.dateModification, "Date de modification") }}
+                {{ form_errors(form.dateModification) }}
+            <div class="input">
+              <div class="inline-inputs">
+                {{ form_widget(form.dateModification,{ 'attr': {'class': 'xlarge'} }) }}
+                
+              </div>
+            </div>
+          </div>
+        {{ form_rest(form) }}
+            </fieldset>
+            <div class="actions">
+                <button class="btn success" type="submit">Valider</button>
+                <button class="btn info" type="reset">Annuler</button>
+                </div>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('article') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+<a class="btn primary" href="{{ path('article') }}">Retour liste</a>
+
+
+{% endblock %}
+{% block javascripts %}
+{{parent()}}
+<script type="text/javascript" src="{{ asset('bundles/zcmsfrontend/js/ckeditor/ckeditor.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('bundles/zcmsfrontend/js/ckeditor/adapters/jquery.js') }}"></script>
+
+{% block ready %}
+
+$('#article_contenu' ).ckeditor();
+
+{% endblock %}
 
 
 {% endblock %}
