@@ -5,3 +5,7 @@ ZcmsFrontendBundle_homepage:
 ZcmsFrontendBundle_demo:
     pattern:  /demo
     defaults: { _controller : ZcmsFrontendBundle:Demo:index }
+
+ZcmsArticle_crud:
+    resource: "routing/article.yml"
+    prefix:   /crud

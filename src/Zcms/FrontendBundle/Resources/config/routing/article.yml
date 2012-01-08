@@ -1,0 +1,30 @@
+article:
+    pattern:  /
+    defaults: { _controller: "ZcmsFrontendBundle:Article:index" }
+
+article_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ZcmsFrontendBundle:Article:show" }
+
+article_new:
+    pattern:  /new
+    defaults: { _controller: "ZcmsFrontendBundle:Article:new" }
+
+article_create:
+    pattern:  /create
+    defaults: { _controller: "ZcmsFrontendBundle:Article:create" }
+    requirements: { _method: post }
+
+article_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ZcmsFrontendBundle:Article:edit" }
+
+article_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ZcmsFrontendBundle:Article:update" }
+    requirements: { _method: post }
+
+article_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ZcmsFrontendBundle:Article:delete" }
+    requirements: { _method: post }

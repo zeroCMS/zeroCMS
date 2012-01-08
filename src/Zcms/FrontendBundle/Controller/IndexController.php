@@ -11,7 +11,14 @@ class IndexController extends Controller
     
     public function indexAction()
     {
-    	return $this->render('ZcmsFrontendBundle:Index:index.html.twig');
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $entities = $em->getRepository('ZcmsFrontendBundle:Article')->findAll();
+
+        return $this->render('ZcmsFrontendBundle:Index:index.html.twig', array(
+            'entities' => $entities
+        ));
+    	
     }
     public function breadAction()
     {

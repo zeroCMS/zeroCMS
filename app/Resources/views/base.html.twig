@@ -9,7 +9,10 @@
         {% block stylesheets %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet/less" href="{{ asset('bundles/zcmsfrontend/framework/lib/bootstrap.less') }}" media="all" />
+        <link href="{{ asset('css/site.css') }}" type="text/css" rel="stylesheet" />
         <link href="{{ asset('bundles/zcmsfrontend/js/prettify/prettify.css') }}" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/zcmsfrontend/js/masha/css/masha.css') }}">
+        <style type="text/css">body{padding-top: 50px;}</style>
         {% endblock %}
 {% block javascripts %}
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -19,36 +22,42 @@
         <script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-dropdown.js') }}"></script>
         <script src="{{ asset('bundles/zcmsfrontend/framework/js/bootstrap-alerts.js') }}"></script>
         <script src="{{ asset('bundles/zcmsfrontend/js/prettify/prettify.js') }}"></script>
-        <script>$(function () { prettyPrint() })</script>
+        <script type="text/javascript" src="{{ asset('bundles/zcmsfrontend/js/masha/js/masha.js') }}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                  MaSha.instance = new MaSha();
+                  prettyPrint()
+              });
+            </script>
 {% endblock %}
-        <style type="text/css">body{padding-top: 50px;}</style>
-    </head>
-    <body>
+
+        </head>
+        <body>
         {% include "ZcmsFrontendBundle::topbar.html.twig" %}
 
-            <div class="container">
+                <div class="container">
 
-                <div class="row">
-                    {% include "ZcmsFrontendBundle::flash.html.twig" %}
-
-                        <div class="span4"><div id="sidebar" class="sidebar">{% block sidebar %}{% include "ZcmsFrontendBundle::sidebar.html.twig" %}{% endblock %}</div>
-                        </div>
-                        <div class="span12"><div class="content">
-                                {% render "ZcmsFrontendBundle:Index:Bread" %}
-                                {% block body %}{% endblock %}
-
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="span16">
+                        {% render "ZcmsFrontendBundle:Index:Bread" %}
+                        {% include "ZcmsFrontendBundle::flash.html.twig" %}
                             </div>
 
+                            <div class="span3">
+                        {% block sidebar %}{% include "ZcmsFrontendBundle::sidebar.html.twig" %}{% endblock %}
+                                </div>
 
+                                <div class="span13">
+                                    <div class="content">
+                           {% block body %}{% endblock %}
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <footer>
-                                <p>&copy; zéroCMS 2012</p>
+                                <footer><p>&copy; zéroCMS 2012</p></footer>
 
-                            </footer>
+                            </div>
+                        </body>
 
-                        </div> <!-- /container -->
-                    </body>
-
-                </html>
+                    </html>

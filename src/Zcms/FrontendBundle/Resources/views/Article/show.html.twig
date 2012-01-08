@@ -1,0 +1,57 @@
+{% extends "::base.html.twig" %}
+{% block title %}{{parent()}}Accueil{% endblock %}
+
+{% block body %}
+
+<h1>Article</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Titre</th>
+            <td>{{ entity.titre }}</td>
+        </tr>
+        <tr>
+            <th>Contenu</th>
+            <td>{{ entity.contenu }}</td>
+        </tr>
+        <tr>
+            <th>Auteur</th>
+            <td>{{ entity.auteur }}</td>
+        </tr>
+        <tr>
+            <th>Datecreation</th>
+            <td>{{ entity.dateCreation|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Datemodification</th>
+            <td>{{ entity.dateModification|date('Y-m-d H:i:s') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('article') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('article_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('article_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+
+{% endblock %}
+

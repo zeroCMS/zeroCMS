@@ -2,8 +2,12 @@
 {% block title %}{{parent()}}Accueil{% endblock %}
 
 {% block body %}
+<div id="selectable-content">
+{% for article in entities %}
+        <h3>{{ article.titre }} <span class="date" style="font-size: 10px;">Ecrit le {{ article.dateCreation|date('d/m/Y') }} </span></h3>
+        <p class="contenu">{{article.contenu|raw}}</p>
 
-{{app.session|debug}}
-
+  {% endfor %}
+    </div>
 {% endblock %}
 
