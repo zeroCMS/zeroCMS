@@ -27,21 +27,17 @@
         </tr>
         <tr>
             <th>Datecreation</th>
-            <td>{{ entity.dateCreation|date('m-d-Y H:i:s') }}</td>
+            <td>{{ entity.dateCreation|date('d-m-Y H:i:s') }}</td>
         </tr>
         <tr>
             <th>Datemodification</th>
-            <td>{{ entity.dateModification|date('m-d-Y H:i:s') }}</td>
+            <td>{{ entity.dateModification|date('d-m-Y H:i:s') }}</td>
         </tr>
     </tbody>
 </table>
-<section class="comments" id="comments">
-    <section class="previous-comments">
-        <h3>Commentaires</h3>
-            {% include 'ZcmsFrontendBundle:Commentaire:index.html.twig' with { 'commentaires': commentaires } %}
-        {% render 'ZcmsFrontendBundle:Commentaire:new' with { 'article_id': entity.id } %}
-    </section>
-</section>
+
+        {% include 'ZcmsCommentaireBundle:Commentaire:index.html.twig' with { 'commentaires': commentaires,'article_id': entity.id } %}
+        
 
 <ul class="record_actions">
     <li>

@@ -1,0 +1,7 @@
+parameters:
+#    zcms_commentaire.example.class: Zcms\CommentaireBundle\Example
+
+services:
+#    zcms_commentaire.example:
+#        class: %zcms_commentaire.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

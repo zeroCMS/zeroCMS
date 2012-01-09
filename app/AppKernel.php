@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Zcms\UserBundle\ZcmsUserBundle(),
             new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
             new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
+            new Zcms\CommentaireBundle\ZcmsCommentaireBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

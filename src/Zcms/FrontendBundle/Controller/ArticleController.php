@@ -38,7 +38,8 @@ class ArticleController extends Controller {
             throw $this->createNotFoundException('Unable to find Article entity.');
         }
 
-        $commentaires = $em->getRepository('ZcmsFrontendBundle:Commentaire')->getCommentairesArticle($id);
+        $commentaires = $em->getRepository('ZcmsCommentaireBundle:Commentaire')->getCommentairesArticle($id);
+        
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ZcmsFrontendBundle:Article:show.html.twig', array(

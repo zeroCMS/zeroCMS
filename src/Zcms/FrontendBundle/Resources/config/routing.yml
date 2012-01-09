@@ -10,9 +10,3 @@ ZcmsArticle_crud:
     resource: "routing/article.yml"
     prefix:   /crud
 
-ZcmsFrontendBundle_commentaire_creation:
-    pattern:  /commentaire/{article_id}
-    defaults: { _controller: ZcmsFrontendBundle:Commentaire:creation }
-    requirements:
-        _method:  POST
-        article_id: \d+

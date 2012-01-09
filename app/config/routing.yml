@@ -1,3 +1,6 @@
+ZcmsCommentaireBundle:
+    resource: "@ZcmsCommentaireBundle/Resources/config/routing.yml"
+
 ZcmsFrontendBundle:
     resource: "@ZcmsFrontendBundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,11 +1,11 @@
 <?php
 // src/Blogger/BlogBundle/Controller/CommentController.php
 
-namespace Zcms\FrontendBundle\Controller;
+namespace Zcms\CommentaireBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Zcms\FrontendBundle\Entity\Commentaire;
-use Zcms\FrontendBundle\Form\CommentaireType;
+use Zcms\CommentaireBundle\Entity\Commentaire;
+use Zcms\CommentaireBundle\Form\CommentaireType;
 
 /**
  * Comment controller.
@@ -20,7 +20,7 @@ class CommentaireController extends Controller
         $commentaire->setArticle($article);
         $form   = $this->createForm(new CommentaireType(), $commentaire);
 
-        return $this->render('ZcmsFrontendBundle:Commentaire:form.html.twig', array(
+        return $this->render('ZcmsCommentaireBundle:Commentaire:form.html.twig', array(
             'commentaire' => $commentaire,
             'form'   => $form->createView()
         ));
@@ -48,7 +48,7 @@ class CommentaireController extends Controller
             );
         }
 
-        return $this->render('ZcmsFrontendBundle:Commentaire:creation.html.twig', array(
+        return $this->render('ZcmsCommentaireBundle:Commentaire:creation.html.twig', array(
             'commentaire' => $commentaire,
             'form'    => $form->createView()
         ));

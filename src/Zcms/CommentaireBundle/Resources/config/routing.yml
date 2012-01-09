@@ -1,0 +1,6 @@
+ZcmsCommentaireBundle_commentaire_creation:
+    pattern:  /commentaire/{article_id}
+    defaults: { _controller: ZcmsCommentaireBundle:Commentaire:creation }
+    requirements:
+        _method:  POST
+        article_id: \d+

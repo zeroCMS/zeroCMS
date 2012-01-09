@@ -58,14 +58,14 @@ class Article {
     private $dateModification;
 
     /**
-     * @var boolean $active
+     * @var boolean $isEnabled
      *
      * * @ORM\Column(name="active", type="boolean")
      */
     private $active;
-
+    
     /**
-     * @ORM\OneToMany(targetEntity="Zcms\CommentaireBundle\Entity\Commentaire", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
      */
     protected $commentaires;
 
@@ -77,20 +77,9 @@ class Article {
         $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Add commentaires
-     *
-     * @param Zcms\CommentaireBundle\Entity\Commentaire $commentaires
-     */
-    public function addCommentaire(\Zcms\CommentaireBundle\Entity\Commentaire $commentaires) {
-        $this->commentaires[] = $commentaires;
+    public function addComment(Commentaire $commentaire) {
+        $this->commentaires[] = $commentaire;
     }
-    
-    /**
-     * Retourne les commentaires liées
-     * 
-     * @return ArrayCollection Commentaire 
-     */
 
     public function getCommentaires() {
         return $this->commentaires;
@@ -146,9 +135,10 @@ class Article {
      */
     public function getContenu($longueur = null) {
         if (false === is_null($longueur) && $longueur > 0)
-            return substr($this->contenu, 0, $longueur) . " ...";
+            return substr($this->contenu, 0, $longueur)." ...";
         else
-            return $this->contenu;
+            return $this->contenu ;
+        
     }
 
     /**
@@ -221,10 +211,6 @@ class Article {
      */
     public function getActive() {
         return $this->active;
-    }
-
-    public function __toString() {
-        return $this->getTitre();
     }
 
 }

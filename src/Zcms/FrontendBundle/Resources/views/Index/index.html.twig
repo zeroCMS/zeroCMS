@@ -4,8 +4,14 @@
 {% block body %}
 <div id="selectable-content">
 {% for article in articles %}
-        <h3><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.titre }}</a> <span class="date" style="font-size: 10px;">Ecrit le {{ article.dateCreation|date('d/m/Y') }} </span></h3>
-        <p class="contenu">{{article.contenu(200)|raw}}</p>
+        <article>
+            <header>
+                <a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.titre }}</a> <span class="date" style="font-size: 10px;">Ecrit le {{ article.dateCreation|date('d/m/Y') }} </span>
+            </header>
+                <p>{{article.contenu(200)|raw}}</p>
+        </article>
+
+
 {% else %}
         <p>Pas d'articles a afficher</p>
   {% endfor %}

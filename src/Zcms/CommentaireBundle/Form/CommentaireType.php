@@ -1,6 +1,6 @@
 <?php
 
-namespace Zcms\FrontendBundle\Form;
+namespace Zcms\CommentaireBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;

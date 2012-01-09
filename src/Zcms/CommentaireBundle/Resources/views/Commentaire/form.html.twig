@@ -1,0 +1,6 @@
+<form action="{{ path('ZcmsCommentaireBundle_commentaire_creation', { 'article_id' : commentaire.article.id } ) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
+    {{ form_widget(form) }}
+    <br/>
+        <input type="submit" value="Envoyer" class="btn primary">
+    
+</form>

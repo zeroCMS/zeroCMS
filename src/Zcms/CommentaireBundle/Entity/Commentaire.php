@@ -1,15 +1,14 @@
 <?php
 
-// src/Blogger/BlogBundle/Entity/Comment.php
+namespace Zcms\CommentaireBundle\Entity;
 
-namespace Zcms\FrontendBundle\Entity;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Zcms\FrontendBundle\Entity\CommentaireRepository")
+ * @ORM\Entity(repositoryClass="Zcms\CommentaireBundle\Entity\CommentaireRepository")
  * @ORM\Table()
  * @ORM\HasLifecycleCallbacks()
  */
@@ -38,7 +37,7 @@ class Commentaire {
     protected $approuve;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity="Zcms\FrontendBundle\Entity\Article", inversedBy="commentaires")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
     protected $article;

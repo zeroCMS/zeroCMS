@@ -3,7 +3,7 @@
 
 {% block body %}
 
-<form class="form-stacked" action="{{ path('article_create') }}" method="post" {{ form_enctype(form) }}>
+<form  action="{{ path('article_create') }}" method="post" {{ form_enctype(form) }}>
       <!-- Les erreurs générales du formulaire. -->
 {{ form_errors(form) }}
 

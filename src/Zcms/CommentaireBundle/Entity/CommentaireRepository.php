@@ -1,6 +1,6 @@
 <?php
 
-namespace Zcms\FrontendBundle\Entity;
+namespace Zcms\CommentaireBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
