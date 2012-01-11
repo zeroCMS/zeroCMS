@@ -1,157 +1,47 @@
-<style type="text/css">
+<script src="{{ asset('bundles/zcmscommentaire/js/commentaire.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/zcmscommentaire/css/commentaire.css') }}">
 
 
-        .comment-head {
-            background: none repeat scroll 0 0 #FAFAFA;
-            border: 1px solid #E6E6E6;
-            padding: 5px;
-        }
+<section id="comments">
 
-        #comments {
-            margin-top: 20px;
-        }
-        #comments h3.comments-meta {
-            margin: 0 0 10px;
-        }
-        #comments ul {
-            list-style: none outside none;
-            margin: 0;
-            padding: 0;
-        }
-        #comments .comment-head {
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-        #comments .comment-head .avatar {
-            float: left;
-            margin-right: 10px;
-        }
-        #comments .comment-head .author {
-            font-size: 18px;
-            font-weight: bold;
-            line-height: 18px;
-            margin: 8px 0 0;
-        }
-        #comments .comment-head .meta {
-            font-size: 11px;
-            margin: 3px 0 0;
-        }
-        #comments .comment-body {
-            margin-bottom: 20px;
-            padding: 0 10px;
-        }
-        #comments .comment-body .content {
-            text-align: justify;
-        }
-        #comments .comment-body .reply {
-            margin: 10px 0 0;
-        }
-        #comments .no-response .comment-body .reply {
-            display: none;
-        }
-        #comments .comment-body .moderation {
-            font-size: 14px;
-            font-style: italic;
-            margin: 10px 0 0;
-        }
-        #comments ul.level1 ul {
-            padding-left: 55px;
-        }
 
-        #respond h3 {
-            font-size: 18px;
-            font-weight: normal;
-            line-height: 20px;
-            margin: 0 0 10px;
-        }
-        #respond p.user {
-            margin: 0;
-        }
-        #respond input[type="text"] {
-            height: 25px;
-            line-height: 25px;
-            padding-left: 5px;
-            width: 200px;
-        }
-        #respond textarea {
-            height: 100px;
-            max-width: 400px;
-            width: 100%;
-        }
-        ul #respond {
-            margin: 0 0 30px;
-            padding-left: 10px;
-        }
-        .comments-list > article {
-            margin-top: 10px;
-            overflow: hidden;
-            padding-top: 10px;
-        }
-        .comments-list > article:first-child {
-            margin: 0;
-            padding: 0;
-        }
-        .comments-list .avatar {
-            float: left;
-            margin-right: 10px;
-        }
-        .comments-list .author {
-            font-size: 12px;
-            line-height: 18px;
-            margin: 2px 0 0;
-        }
-        .comments-list .meta {
-            font-size: 11px;
-            font-style: italic;
-            line-height: 13px;
-            margin: 0;
-        }
-        .comments-list .content p {
-            margin: 5px 0 0;
-        }
+    <h3 class="comments-meta">Commentaires ({{count}})</h3>
 
-    </style>
-
-    <section id="comments">
-
-        <h3 class="comments-meta">Commentaires (count a faire)</h3>
-
-        <ul class="level1 nested no-response">
+    <ul class="level1 nested no-response">
 
         {% for commentaire in commentaires %}
-            <li>
-                <div class="comment " id="comment-{{ commentaire.id }}">
+        <li>
+            <div class="comment " id="comment-{{ commentaire.id }}">
 
-                    <div class="comment-head">
-
-                        <img width="50" height="50" alt="{{ commentaire.utilisateur }}" src="http://www.gravatar.com/avatar/b2af7d0c9989e63725e332b13c3c6507?s=50&amp;d=http://www.yootheme.com/components/com_blog/assets/images/avatar.png" title="{{ commentaire.utilisateur }}" class="avatar"/>			
+                <div class="comment-head">
+                        {% if is_granted("ROLE_SUPER_ADMIN") %}
+                            {% if commentaire.approuve %}
+                        <div style="float: right;padding: 2px;" id="comment-admin"><button onclick="desapprouve({{ commentaire.id }},'{{ path('ZcmsCommentaireBundle_commentaire_desapprouve')}}');" class="btn danger">Depublier</button></div>  
+                            {% else %}
+                        <div style="float: right;padding: 2px;" id="comment-admin"><button onclick="approuve({{ commentaire.id }},'{{ path('ZcmsCommentaireBundle_commentaire_approuve')}}');" class="btn success">Publier</button></div>
+                            {% endif %}
+                        {% endif %}
+                        <img width="50" height="50" alt="{{ commentaire.utilisateur }}" src="{{ commentaire.gravatar }}" title="{{ commentaire.utilisateur }}" class="avatar"/>			
                         <h3 class="author">{{ commentaire.utilisateur }}</h3>
 
 
                         <div class="meta">
-                            <time datetime="{{ commentaire.dateCreation|date('c') }}">{{ commentaire.dateCreation|date('d-m-Y') }}</time>
-                            | <a href="#">Profil(TODO)</a>
+                            <time datetime="{{ commentaire.dateCreation|date('c') }}">{{ commentaire.dateCreation|depuis }}</time>
+                            | <a href="#">Profil</a>
                             | <a href="#comment-{{ commentaire.id }}" class="permalink">#</a>
                         </div>
 
                     </div>
 
                     <div class="comment-body">
-
-                        <div class="content">
-                    {{ commentaire.commentaire }}
-                            </div>
-
-                            <div class="reply"><a rel="nofollow" href="#">répondre</a></div>
-
-
-
-                        </div>
+                        <div class="content">{{ commentaire.commentaire }}</div>
+                        <div class="reply"><a rel="nofollow" href="#">répondre</a></div>
                     </div>
-                </li>
+                </div>
+            </li>
 
         {% else %}
-            
+
             <p>Pas de commentaire. Soyez le premier a en mettre un...</p>
 {% endfor %}
 
@@ -160,8 +50,15 @@
                     <h3 class="comments-meta">Ajouter un commentaire : </h3>
                 {% render 'ZcmsCommentaireBundle:Commentaire:new' with { 'article_id': article_id } %}
             {% else %}
-               <p>Login pour poster un commentaire</p>
+                    <div class="alert-message block-message info" data-alert="true">
+                        <a href="#" class="close">×</a>
+                        <p><strong>Login requis ! </strong>Connection requise pour poster un commentaire.</p>
+                        <div class="alert-actions">
+                            <a href="{{ path('fos_user_security_login') }}" class="btn small">Login</a> <a href="{{ path('ZcmsFrontendBundle_homepage') }}" class="btn small">Accueil</a>
+
+                        </div>
+                    </div>
             {% endif %}
-            </div>
+                </div>
             </ul>
         </section>
