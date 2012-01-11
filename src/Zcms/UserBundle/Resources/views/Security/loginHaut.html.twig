@@ -1,0 +1,23 @@
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+<ul class="nav secondary-nav">
+    <li class="dropdown">
+        <a class="dropdown-toggle" href="#">{{app.user.username|ucfirst}}</a>
+
+        <ul class="dropdown-menu">
+            <li><a href="{{ path('fos_user_profile_edit') }}">Editer profil</a></li>
+            <li><a href="{{ path('fos_user_profile_show') }}">Voir profil</a></li>
+            <li class="divider"/>
+            <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+        </ul>
+    </li>
+
+</ul>             
+
+{% else %}
+<form class="pull-right" action="{{ path("fos_user_security_check") }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    <input class="input-small" type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{{ last_username }}" />
+    <input class="input-small" type="password" id="password" name="_password" placeholder="Password" />
+    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+</form>
+{% endif %}
