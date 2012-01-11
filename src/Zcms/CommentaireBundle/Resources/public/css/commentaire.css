@@ -1,0 +1,126 @@
+/* 
+    Document   : commentaire
+    Created on : 10 janv. 2012, 23:02:57
+    Author     : benjamin
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.comment-head {
+    background: none repeat scroll 0 0 #FAFAFA;
+    border: 1px solid #E6E6E6;
+    padding: 5px;
+}
+.comment-body {
+    background: none repeat scroll 0 0 #FAFAFA;
+    
+    padding:5px;
+}
+
+#comments {
+    margin-top: 20px;
+}
+#comments h3.comments-meta {
+    margin: 0 0 10px;
+}
+#comments ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#comments .comment-head {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+#comments .comment-head .avatar {
+    float: left;
+    margin-right: 10px;
+}
+#comments .comment-head .author {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 18px;
+    margin: 8px 0 0;
+}
+#comments .comment-head .meta {
+    font-size: 11px;
+    margin: 3px 0 0;
+}
+#comments .comment-body {
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+#comments .comment-body .content {
+    text-align: justify;
+}
+#comments .comment-body .reply {
+    margin: 10px 0 0;
+}
+#comments .no-response .comment-body .reply {
+    display: none;
+}
+#comments .comment-body .moderation {
+    font-size: 14px;
+    font-style: italic;
+    margin: 10px 0 0;
+}
+#comments ul.level1 ul {
+    padding-left: 55px;
+}
+
+#respond h3 {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 20px;
+    margin: 0 0 10px;
+}
+#respond p.user {
+    margin: 0;
+}
+#respond input[type="text"] {
+    height: 25px;
+    line-height: 25px;
+    padding-left: 5px;
+    width: 200px;
+}
+#respond textarea {
+    height: 100px;
+    max-width: 400px;
+    width: 100%;
+}
+ul #respond {
+    margin: 0 0 30px;
+    padding-left: 10px;
+}
+.comments-list > article {
+    margin-top: 10px;
+    overflow: hidden;
+    padding-top: 10px;
+}
+.comments-list > article:first-child {
+    margin: 0;
+    padding: 0;
+}
+.comments-list .avatar {
+    float: left;
+    margin-right: 10px;
+}
+.comments-list .author {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 2px 0 0;
+}
+.comments-list .meta {
+    font-size: 11px;
+    font-style: italic;
+    line-height: 13px;
+    margin: 0;
+}
+.comments-list .content p {
+    margin: 5px 0 0;
+}
