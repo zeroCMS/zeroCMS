@@ -12,6 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class CommentaireRepository extends EntityRepository {
 
+    public function getCommentairesArticleAdmin($articleId) {
+        $qb = $this->createQueryBuilder('c')
+                ->select('c')
+                ->where('c.article = :article_id')
+                ->addOrderBy('c.dateCreation')
+                ->setParameter('article_id', $articleId);
+        return $qb->getQuery()
+                        ->getResult();
+    }
+
+    public function getCountAdmin($articleId) {
+
+        $qb = $this->createQueryBuilder('c')
+                ->select('COUNT(c)')
+                ->where('c.article = :article_id')
+                ->setParameter('article_id', $articleId);
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
     public function getCommentairesArticle($articleId, $approuve = true) {
         $qb = $this->createQueryBuilder('c')
                 ->select('c')
@@ -25,6 +44,18 @@ class CommentaireRepository extends EntityRepository {
 
         return $qb->getQuery()
                         ->getResult();
+    }
+
+    public function getCount($articleId, $approuve = true) {
+
+        $qb = $this->createQueryBuilder('c')
+                ->select('COUNT(c)')
+                ->where('c.article = :article_id')
+                ->setParameter('article_id', $articleId);
+        if (false === is_null($approuve))
+            $qb->andWhere('c.approuve = :approuve')
+                    ->setParameter('approuve', $approuve);
+        return $qb->getQuery()->getSingleScalarResult();
     }
 
 }
