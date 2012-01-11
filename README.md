@@ -2,41 +2,40 @@ zéroCMS : Le cms des zéros.
 ========================
 1)Installation du projet via git
 --------------------------------
-Se placer dans le dossier ou vous voulez installer le projet (Repertoire Serveur Web) puis executez dans la console:
+Se placer dans le dossier ou vous voulez installer le projet (Repertoire Serveur Web) puis executez :
 
     git clone http://github.com/zeroCMS/zeroCMS
 
 2)Configuration du projet
 -------------------------
-Renommer le fichier :
+Créer une base de donnée via phpmyadmin
 
-    app/config/parameters.ini.dist en app/config/parameters.ini
+Mettre a jour le fichier avec vos identifiants de BDD :
 
-Rentrez vos identifiants de base de donnée dans le fichier parameters.ini
+    app/config/parameters.ini
 
-Allez via votre navigateur web a l'adresse : 
-    
-    http://localhost/zeroCMS/web/config.php 
-
-en supposant que le repertoire est a la racine de votre serveur web (www) puis suivez les instructions et réglez les problémes si il y en a.
-
-Mettre en place les vendors : 
-    
-Ajouter les vendors au projet soit via :
+Installer les vendors  :
 
     php bin/vendors install (git requis)
 
-soit en téléchargant via le site de symfony2 (methode recommandée) : 
+ou installation via archive
 
-    http://symfony.com/download prendre la version Standard avec les vendors
+    http://symfony.com/download (prendre la version Standard avec les vendors)
 
-puis dezipper le dossier vendor a la racine de votre projet
+puis dezipper le dossier vendor à la racine du projet.
 
-Aller a l'adresse :
+Genérer le bootstrap :
+   
+    php vendor/bundles/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php 
+
+Genérer les tables de la base de donnée : 
+
+     php app/console doctrine:schema:create
+
+Installer les données d'exemples : 
+
+    php app/console doctrine:fixtures:load
     
-    http://localhost/zeroCMS/app_dev.php 
-
-Vous devriez voir le message d'acceuil "Bienvenue sur le CMS des zéros !!!".
 
 Symfony Standard Edition
 ========================
