@@ -15,7 +15,9 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
-class SecurityController extends ContainerAware
+use FOS\UserBundle\Controller\SecurityController as BaseController;
+
+class SecurityController extends BaseController
 {
     public function loginAction()
     {
