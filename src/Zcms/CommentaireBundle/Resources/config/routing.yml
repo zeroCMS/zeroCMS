@@ -4,3 +4,15 @@ ZcmsCommentaireBundle_commentaire_creation:
     requirements:
         _method:  POST
         article_id: \d+
+
+ZcmsCommentaireBundle_commentaire_approuve:
+  pattern: /commentaire/approuve
+  defaults: {_controller: ZcmsCommentaireBundle:Ajax:approuve }
+  requirements:
+    _method: POST
+ 
+ZcmsCommentaireBundle_commentaire_desapprouve:
+  pattern: /commentaire/desapprouve
+  defaults: {_controller: ZcmsCommentaireBundle:Ajax:desapprouve }
+  requirements:
+    _method: POST
