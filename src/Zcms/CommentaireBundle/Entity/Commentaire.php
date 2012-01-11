@@ -24,6 +24,10 @@ class Commentaire {
     /**
      * @ORM\Column(type="string")
      */
+    protected $gravatar;
+    /**
+     * @ORM\Column(type="string")
+     */
     protected $utilisateur;
 
     /**
@@ -56,6 +60,8 @@ class Commentaire {
         
         $this->setDateCreation(new \DateTime());
         $this->setDateModification(new \DateTime());
+        
+        $this->setGravatar("http://www.gravatar.com/avatar/b2af7d0c9989e63725e332b13c3c6507?s=50");
 
         $this->setApprouve(true);
     }
@@ -64,7 +70,7 @@ class Commentaire {
      * @ORM\preUpdate
      */
     public function setUpdatedValue() {
-        $this->setUpdated(new \DateTime());
+        $this->setDateModification(new \DateTime());
     }
     
     public static function loadValidatorMetadata(ClassMetadata $metadata)
@@ -88,6 +94,26 @@ class Commentaire {
         return $this->id;
     }
 
+    /**
+     * Set gravatar
+     *
+     * @param string $gravatar
+     */
+    public function setGravatar($gravatar)
+    {
+        $this->gravatar = $gravatar;
+    }
+
+    /**
+     * Get gravatar
+     *
+     * @return string 
+     */
+    public function getGravatar()
+    {
+        return $this->gravatar;
+    }
+    
     /**
      * Set utilisateur
      *
