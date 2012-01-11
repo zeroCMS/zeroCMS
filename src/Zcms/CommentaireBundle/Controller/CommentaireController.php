@@ -1,5 +1,4 @@
 <?php
-// src/Blogger/BlogBundle/Controller/CommentController.php
 
 namespace Zcms\CommentaireBundle\Controller;
 
