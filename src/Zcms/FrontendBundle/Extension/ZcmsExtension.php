@@ -32,7 +32,7 @@ class ZcmsExtension extends \Twig_Extension {
     }
 
     public function getName() {
-        return 'ucfisrt';
+        return 'zcms_extension';
     }
 
 }

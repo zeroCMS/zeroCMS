@@ -35,16 +35,30 @@ class ArticleController extends Controller {
 
         $entity = $em->getRepository('ZcmsFrontendBundle:Article')->find($id);
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Article entity.');
+            throw $this->createNotFoundException("Impossible de trouver l'article");
         }
 
-        $commentaires = $em->getRepository('ZcmsCommentaireBundle:Commentaire')->getCommentairesArticle($id);
-        
+        /**
+         * @todo Revoir la facon de faire c'est pas terrible la essayer de tout integrer dans le bundle de Commentaire
+         */
+        if ($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
+            $commentaires = $em->getRepository('ZcmsCommentaireBundle:Commentaire')->getCommentairesArticleAdmin($id);
+            $count = $em->getRepository('ZcmsCommentaireBundle:Commentaire')->getCountAdmin($id);
+        } else {
+            $commentaires = $em->getRepository('ZcmsCommentaireBundle:Commentaire')->getCommentairesArticle($id);
+            $count = $em->getRepository('ZcmsCommentaireBundle:Commentaire')->getCount($id);
+        }
+
+
+
+
+
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ZcmsFrontendBundle:Article:show.html.twig', array(
                     'entity' => $entity,
                     'commentaires' => $commentaires,
+                    'count' => $count,
                     'delete_form' => $deleteForm->createView(),
                 ));
     }
